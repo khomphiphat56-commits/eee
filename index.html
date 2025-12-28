@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1 Year Anniversary 💜</title>
+
+<style>
+:root{
+  --bg1:#f9f6ff;
+  --bg2:#e8ddff;
+  --bg3:#d6c6ff;
+  --deep:#5b4b8a;
+}
+
+*{box-sizing:border-box;font-family:"Segoe UI",system-ui,sans-serif}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+  overflow:hidden;
+}
+
+/* แสงพื้นหลัง */
+.glow{
+  position:fixed;
+  width:420px;
+  height:420px;
+  background:radial-gradient(circle,rgba(200,175,255,.45),transparent 70%);
+  filter:blur(80px);
+  animation:glow 20s infinite alternate ease-in-out;
+  z-index:0;
+}
+.g1{top:-140px;left:-140px}
+.g2{bottom:-160px;right:-160px;animation-delay:6s}
+
+@keyframes glow{to{transform:translateY(120px)}}
+
+/* ของลอย (ลดจำนวน + ลดขนาด) */
+.bg{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+
+.float-img,.float-heart{
+  position:absolute;
+  bottom:-80px;
+  opacity:.75;
+  animation:rise linear forwards;
+}
+
+.float-img{
+  width:36px;   /* ลดลงชัด */
+  height:36px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 6px 14px rgba(120,90,200,.3);
+}
+
+@keyframes rise{
+  from{transform:translateY(0) scale(.9);opacity:0}
+  20%{opacity:.8}
+  to{transform:translateY(-120vh) scale(1.05);opacity:0}
+}
+
+/* หน้าเข้า */
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:30;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:
+    radial-gradient(circle at top,#efe9ff,transparent 55%),
+    linear-gradient(135deg,#cbb6ff,#9f83ff);
+  transition:1s ease;
+}
+
+.intro-card{
+  background:rgba(255,255,255,.28);
+  backdrop-filter:blur(20px);
+  padding:60px 44px;
+  border-radius:44px;
+  text-align:center;
+  color:#fff;
+  box-shadow:0 30px 90px rgba(0,0,0,.28);
+}
+
+.intro-card h1{font-size:34px;margin-bottom:12px}
+.intro-card p{font-size:15px;opacity:.95}
+
+.intro-card button{
+  margin-top:34px;
+  padding:16px 54px;
+  border:none;
+  border-radius:38px;
+  font-size:16px;
+  cursor:pointer;
+  background:#fff;
+  color:#7a4bff;
+  box-shadow:0 16px 40px rgba(0,0,0,.35);
+}
+
+/* หน้าหลัก */
+.main{
+  position:relative;
+  z-index:10;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+.main.show{opacity:1;transform:none}
+
+/* การ์ด */
+.card{
+  max-width:520px;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(22px);
+  border-radius:42px;
+  padding:56px 38px;
+  text-align:center;
+  box-shadow:0 50px 100px rgba(140,110,200,.35);
+}
+
+/* 🔒 ล็อกรูปคู่ตรงกลาง */
+.photo-wrap{
+  position:relative;
+  width:200px;
+  height:200px;
+  margin:0 auto 24px;
+  z-index:5;
+}
+
+.photo-glow{
+  position:absolute;
+  inset:-18px;
+  border-radius:50%;
+  background:conic-gradient(#e2d7ff,#b99cff,#e2d7ff);
+  filter:blur(14px);
+  animation:spin 16s linear infinite;
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.photo{
+  position:relative;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  overflow:hidden;
+  border:7px solid #fff;
+  box-shadow:0 24px 60px rgba(140,110,200,.45);
+  background:#fff;
+}
+
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* ข้อความ */
+h2{
+  margin:24px 0 6px;
+  font-size:32px;
+  color:var(--deep);
+}
+
+.names{
+  font-size:19px;
+  color:#6a5f8f;
+}
+
+.badge{
+  display:inline-block;
+  margin-top:10px;
+  padding:8px 22px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#cbb6ff,#9a7dff);
+  color:#fff;
+  font-size:14px;
+  box-shadow:0 12px 28px rgba(140,110,200,.45);
+}
+
+.msg{
+  margin-top:28px;
+  font-size:15px;
+  line-height:2;
+  color:#6a5f8f;
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+<div class="bg" id="bg"></div>
+
+<!-- หน้าเข้า -->
+<div id="intro">
+  <div class="intro-card">
+    <h1>สำหรับคนพิเศษ 💜</h1>
+    <p>แตะเพื่อเปิดความทรงจำ 1 ปีของเรา</p>
+    <button onclick="enter()">✨ เปิดความรัก</button>
+  </div>
+</div>
+
+<!-- หน้าหลัก -->
+<div class="main" id="main">
+  <div class="card">
+
+    <!-- รูปคู่ (ล็อกแน่น) -->
+    <div class="photo-wrap">
+      <div class="photo-glow"></div>
+      <div class="photo">
+        <img src="main.jpg" alt="คู่ของเรา">
+      </div>
+    </div>
+
+    <h2>Happy Anniversary</h2>
+    <div class="names">เอิร์ท 🤍 โอปอ</div>
+    <div class="badge">💜 1 Year 💜</div>
+
+    <div class="msg">
+      (แก้ข้อความตรงนี้ได้เอง)<br><br>
+      หนึ่งปีที่ผ่านมา  
+      อาจไม่ได้ง่ายเสมอ  
+      แต่เป็นปีที่อบอุ่นที่สุด  
+      เพราะมีเธออยู่ข้าง ๆ
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* 🎵 เสียงอบอุ่นจริง (ช้า ลึก นุ่ม) */
+let ctx, master;
+function startSound(){
+  ctx=new (window.AudioContext||window.webkitAudioContext)();
+  master=ctx.createGain();
+  master.gain.value=0.12;
+  master.connect(ctx.destination);
+
+  [196,220,261].forEach(f=>{
+    const o=ctx.createOscillator();
+    const g=ctx.createGain();
+    o.type="sine";           // นุ่มที่สุด
+    o.frequency.value=f;
+    g.gain.value=0;
+    o.connect(g);g.connect(master);
+    o.start();
+
+    setInterval(()=>{
+      g.gain.setTargetAtTime(0.045,ctx.currentTime,4);
+      setTimeout(()=>g.gain.setTargetAtTime(0,ctx.currentTime,5),7000);
+    },10000);
+  });
+}
+
+function enter(){
+  startSound();
+  intro.style.opacity=0;
+  setTimeout(()=>{
+    intro.style.display="none";
+    main.classList.add("show");
+  },900);
+}
+
+/* ของลอย (ลดจำนวนอีก) */
+const bg=document.getElementById("bg");
+const hearts=["💜","🤍","✨"];
+const imgs=["pic1.jpg","pic2.jpg"];
+
+setInterval(()=>{
+  if(Math.random()>0.6){
+    const i=document.createElement("img");
+    i.src=imgs[Math.floor(Math.random()*imgs.length)];
+    i.className="float-img";
+    i.style.left=Math.random()*100+"vw";
+    i.style.animationDuration=(8+Math.random()*6)+"s";
+    bg.appendChild(i);
+    setTimeout(()=>i.remove(),16000);
+  }else{
+    const h=document.createElement("div");
+    h.className="float-heart";
+    h.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(16+Math.random()*18)+"px";
+    h.style.animationDuration=(8+Math.random()*6)+"s";
+    bg.appendChild(h);
+    setTimeout(()=>h.remove(),16000);
+  }
+},220);   /* ลดความถี่ชัด */
+</script>
+
+</body>
+</html>
